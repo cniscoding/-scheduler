@@ -20,11 +20,8 @@ export default function DayListItem(props) {
     if (props.spots > 1) {
       return `${props.spots} spots remaining`
     }
-    // (props.spots === 0 && 'no spots remaining')
-    // (props.spots === 1 && '1 spot remaining')
-    // (props.spots > 1 && `{props.spots} spots remaining`)
-  }
 
+  }
 
   return (
     <li className={dayClass} onClick={() => props.setDay(props.name)}>
