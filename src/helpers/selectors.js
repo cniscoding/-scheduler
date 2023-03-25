@@ -3,14 +3,18 @@ const getAppointmentsForDay = (state, day) => {
     return []
   }
   const arrAppointments = state.days.filter(dayFilter => dayFilter.name === day)
-  // console.log('arrAppointments', arrAppointments[0].appointments)
+ 
   
   if (arrAppointments.length === 0){
     return []
   }
   const appointments = arrAppointments[0].appointments.map(x => state.appointments[x])
-  console.log('appointments', appointments)
+
   return appointments
+
+  
+
+  // return array of appointments for given day
 }
 
 export default getAppointmentsForDay;
