@@ -1,12 +1,16 @@
 const getAppointmentsForDay = (state, day) => {
+  if (state.days.length === 0) {
+    return []
+  }
   const arrAppointments = state.days.filter(dayFilter => dayFilter.name === day)
-  console.log('arrAppointments', arrAppointments)
-  return arrAppointments
-  // const appID = Object.values(arrAppointments.appointments)
-  // console.log('appID.map(id => state.appointments[id]',appID.map(id => state.appointments[id]))
-  // return appID.map(id => state.appointments[id])
-  // i want state.appointments[1] / [2] / [3]
-  // return array of appointments for given day
+  // console.log('arrAppointments', arrAppointments[0].appointments)
+  
+  if (arrAppointments.length === 0){
+    return []
+  }
+  const appointments = arrAppointments[0].appointments.map(x => state.appointments[x])
+  console.log('appointments', appointments)
+  return appointments
 }
 
 export default getAppointmentsForDay;

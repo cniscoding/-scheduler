@@ -28,7 +28,11 @@ export default function Application(props) {
       axios.get('/api/interviewers')
     ]).then((all) => {
       // setDays(res.all[0].data)
-      setState(prev => ({ ...prev, days: all[0].data, day: all[1].data, appointments: all[2].data }))
+      setState(prev => ({ ...prev, 
+        days: all[0].data, 
+        day: all[1].data, 
+        appointments: all[2].data 
+      }))
       // console.log(all[0].data); // first
       // console.log(all[1]); // second
       // console.log(all[2]); // third
@@ -37,11 +41,6 @@ export default function Application(props) {
     //   // setDays(res.data)
     // })
   }, [])
-
-
-
-  // const [day, setDay] = useState('')
-
 
   const interviewList = dailyAppointments.map((appointment) => {
     return (
