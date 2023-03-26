@@ -24,7 +24,7 @@ export default function Appointment(props) {
         <Show interviewer={props.interview.interviewer.name} student={props.interview.student} /> :
         <Empty />
       } */}
-      {mode === EMPTY && <Empty onAdd={() => transition(CREATE) }/>}
+      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
           student={props.interview.student}
@@ -32,7 +32,13 @@ export default function Appointment(props) {
         />
       )}
       {/* will add to loater as per instructions */}
-      {mode === CREATE && <Form />} 
+      {mode === CREATE && (
+        <Form
+          interviewers={[]}
+          // onAdd={}
+          onCancel={back}
+        />)
+      }
 
     </article>
 

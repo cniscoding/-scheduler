@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 // create function that takes in an initial mode
 export function useVisualMode(initial) {

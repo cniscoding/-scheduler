@@ -19,7 +19,7 @@ const reset = () => {
 }
 
 const cancel = () => {
-  return (props.onCancel && reset())
+  return (props.onCancel() && reset())
 }
 
   return (
