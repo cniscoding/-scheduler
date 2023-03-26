@@ -23,7 +23,6 @@ export default function Application(props) {
       axios.get('/api/appointments'),
       axios.get('/api/interviewers')
     ]).then((all) => {
-      // setDays(res.all[0].data)
       setState(prev => ({
         ...prev,
         days: all[0].data,
