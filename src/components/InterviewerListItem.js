@@ -5,7 +5,7 @@ import "components/InterviewerListItem.scss";
 export default function InterviewerListItem(props) {
 
   let interviewClass = classNames("interviewers__item", {
-    "interviewers__item--selected" : props.selected
+    "interviewers__item--selected": props.selected
   });
 
   return (
@@ -17,6 +17,6 @@ export default function InterviewerListItem(props) {
       />
       {props.selected && props.name}
     </li>
-    )
+  )
 };
 

@@ -3,3 +3,12 @@
 // The setDay action can be used to set the current day.
 // The bookInterview action makes an HTTP request and updates the local state.
 // The cancelInterview action makes an HTTP request and updates the local state.
+
+export default function useApplicationData() {
+  return {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview
+  }
+}

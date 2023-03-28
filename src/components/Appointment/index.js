@@ -32,7 +32,7 @@ export default function Appointment(props) {
       .then(() => {
         transition(EMPTY)
       })
-      .catch (()=>{
+      .catch(() => {
         transition(ERROR_DELETE, true)
       })
   }
@@ -98,17 +98,17 @@ export default function Appointment(props) {
         onCancel={back}
         onSave={save}
       />}
-      {mode ===  ERROR_DELETE && <Error
-      text='error deleting'
-      onClose={back}
-        
+      {mode === ERROR_DELETE && <Error
+        text='error deleting'
+        onClose={back}
+
       />}
 
       {mode === ERROR_SAVE && < Error
-      text='error saving'
-      onClose={back}
-      
-      />} 
+        text='error saving'
+        onClose={back}
+
+      />}
     </article>
   )
 }

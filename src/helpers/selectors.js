@@ -22,10 +22,10 @@
 //   return appointments
 // }
 
-export function getAppointmentsForDay (state, day) {
-  const appointmentFound = state.days.find (findApp => findApp.name === day)
+export function getAppointmentsForDay(state, day) {
+  const appointmentFound = state.days.find(findApp => findApp.name === day)
   // console.log('appointmentFound', appointmentFound)
-  if(appointmentFound) {
+  if (appointmentFound) {
     // console.log(appointmentFound.appointments.map(x => state.appointments[x]))
     return appointmentFound.appointments.map(x => state.appointments[x])
   } else {
@@ -33,10 +33,10 @@ export function getAppointmentsForDay (state, day) {
   }
 }
 
-export function getInterviewersForDay (state, day) {
-  const appointmentFound = state.days.find (findApp => findApp.name === day)
+export function getInterviewersForDay(state, day) {
+  const appointmentFound = state.days.find(findApp => findApp.name === day)
   // console.log('appointmentFound', appointmentFound)
-  if(appointmentFound) {
+  if (appointmentFound) {
     // console.log(appointmentFound.appointments.map(x => state.appointments[x]))
     return appointmentFound.interviewers.map(x => state.interviewers[x])
   } else {
