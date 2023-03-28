@@ -7,6 +7,7 @@ export function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
+  // movement within history
   function transition(newMode, replace = false) {
     if (newMode !== mode) {
       setMode(newMode);
@@ -17,6 +18,7 @@ export function useVisualMode(initial) {
     }
   }
 
+  // moves back in history
   function back() {
     if (history.length > 1) {
       history.pop();
@@ -24,6 +26,6 @@ export function useVisualMode(initial) {
       setHistory([...history])
     }
   }
-  // return an object with a mode property
+  // send custom hooks to application.js
   return { mode, transition, back }
 }
