@@ -27,16 +27,20 @@ export default function Application(props) {
   }
   
   function bookInterview(id, interview) {
-    // console.log('bookInterview', id, interview);
-
+    console.log('bookInterview', id, interview);
+    console.log('state', state)
+    console.log('..state', state.appointments[id])
+    
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
     };
+    // console.log('appointment',appointment)
     const appointments = {
       ...state.appointments,
       [id]: appointment
     };
+    // console.log('appointments',appointments)
     // setState({
     //   ...state,
     //   appointments
@@ -48,6 +52,7 @@ export default function Application(props) {
         ...state,
         appointments
       });
+      console.log(setState)
     })
   }
   

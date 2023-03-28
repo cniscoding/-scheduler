@@ -6,6 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 import { useVisualMode } from "hooks/useVisualMode";
 
 //mode constants
@@ -15,7 +16,9 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const CANCEL = "CANCEL";
 const DELETE = "DELETE";
-const EDIT = "EDIT"
+const EDIT = "EDIT";
+const ERROR_SAVE = "ERROR_SAVE";
+const ERROR_DELETE = "ERROR_DELETE";
 
 
 export default function Appointment(props) {
@@ -24,10 +27,13 @@ export default function Appointment(props) {
   }
 
   function deleteAppointment() {
-    transition(DELETE)
+    transition(DELETE, true)
     props.cancelInterview(props.id)
       .then(() => {
         transition(EMPTY)
+      })
+      .catch (()=>{
+        transition(ERROR_DELETE, true)
       })
   }
 
@@ -48,7 +54,7 @@ export default function Appointment(props) {
         return transition(SHOW)
       })
       .catch((res) => {
-        console.log(res)
+        transition(ERROR_SAVE, true)
       })
   }
 
@@ -92,6 +98,17 @@ export default function Appointment(props) {
         onCancel={back}
         onSave={save}
       />}
+      {mode ===  ERROR_DELETE && <Error
+      text='error deleting'
+      onClose={back}
+        
+      />}
+
+      {mode === ERROR_SAVE && < Error
+      text='error saving'
+      onClose={back}
+      
+      />} 
     </article>
   )
 }
