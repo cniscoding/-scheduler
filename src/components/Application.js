@@ -7,33 +7,41 @@ import Appointment from "./Appointment";
 import { getInterviewersForDay, getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 export default function Application(props) {
-  
+  function cancelInterview(id){
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.delete(`/api/appointments/${id}`, appointment)
+    .then (() => {
+      setState({
+        ...state,
+        appointments
+      });
+    })
+  }
   
   function bookInterview(id, interview) {
     // console.log('bookInterview', id, interview);
-    // const appointment = {
-    //   ...state.appointments[id],
-    //   interview: { ...interview }
-    // };
-    // const appointments = {
-    //   ...state.appointments,
-    //   [id]: appointment
-    // };
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
     // setState({
     //   ...state,
     //   appointments
     // });
-
-    return axios.put(`/api/appointments/:${id}`)
+    // console.log('id',id)
+    return axios.put(`/api/appointments/${id}`, appointment)
     .then (() => {
-      const appointment = {
-        ...state.appointments[id],
-        interview: { ...interview }
-      };
-      const appointments = {
-        ...state.appointments,
-        [id]: appointment
-      };
       setState({
         ...state,
         appointments
@@ -64,7 +72,7 @@ export default function Application(props) {
     });
   }, [])
   const dailyInterviews = getInterviewersForDay(state, state.day);
-  console.log('dailyInterviews', dailyInterviews)
+  // console.log('dailyInterviews', dailyInterviews)
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewList = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
@@ -77,6 +85,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={dailyInterviews}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     )
   })
