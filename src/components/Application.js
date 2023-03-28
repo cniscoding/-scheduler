@@ -6,7 +6,8 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 import { getInterviewersForDay, getAppointmentsForDay, getInterview } from "helpers/selectors";
 
-export default function Application(props) {
+export default function Application(props) {  
+  
   function cancelInterview(id){
     const appointment = {
       ...state.appointments[id],
@@ -27,6 +28,7 @@ export default function Application(props) {
   
   function bookInterview(id, interview) {
     // console.log('bookInterview', id, interview);
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
