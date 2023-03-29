@@ -8,9 +8,6 @@ const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
 const textChange = (event) => {
   setStudent(event.target.value)
-  // setText(prev => {
-  //   return event.target.value
-  // })
 }
 
 const reset = () => {

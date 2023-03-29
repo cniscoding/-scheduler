@@ -24,6 +24,7 @@ export default function useApplicationData() {
     }
       const day = { ...dayObj, spots };
       // console.log('day',day)
+      console.log('state', state.days.map(d => d.name === state.day ? day : d))
     return state.days.map(d => d.name === state.day ? day : d)
   }
 
@@ -40,10 +41,13 @@ export default function useApplicationData() {
     return axios.delete(`/api/appointments/${id}`, appointment)
 
     .then(() => {
-      updateSpots(state, appointments)
+      //add updateSpots somewhere?
+      // need code review. is this consider changing state directly?
+      
       setState({
         ...state,
-        appointments
+        appointments,
+        days : updateSpots(state, appointments),
       });
     })
      .catch((res) => {
@@ -67,10 +71,13 @@ export default function useApplicationData() {
     };
 
     return axios.put(`/api/appointments/${id}`, appointment)
+
     .then(() => {
+      //add updateSpots somewhere?
       setState({
         ...state,
-        appointments
+        appointments,
+        days : updateSpots(state, appointments),
       });
     })
   
