@@ -24,13 +24,14 @@ const cancel = () => {
       <section className="appointment__card-left">
         <form autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
+            // added this line for testing
+            data-testid="student-name-input"
             className="appointment__create-input text--semi-bold"
             name="name"
             type="text"
             placeholder="Enter Student Name"
             value = {student}
             onChange={textChange}
-
           />
         </form>
         <InterviewerList 
@@ -48,3 +49,4 @@ const cancel = () => {
     </main>
   )
 }
+
