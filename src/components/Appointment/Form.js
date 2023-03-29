@@ -18,7 +18,8 @@ export default function Form(props) {
   }
 
   const cancel = () => {
-    return (props.onCancel() && reset())
+    reset();
+    props.onCancel()
   }
 
   // When the input is invalid, we need to change the error state to "Student name cannot be blank".
@@ -32,6 +33,7 @@ export default function Form(props) {
       return;
     }
 
+    setError("");
     return props.onSave(name, interviewer);
   }
   return (
