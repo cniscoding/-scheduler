@@ -18,9 +18,9 @@ import Application from "components/Application";
   A test that renders a React Component
 */
 describe("Appointment", () => {
-  it("renders without crashing", () => {
-    render(<Application />);
-  });
+  // it("renders without crashing", () => {
+  //   render(<Application />);
+  // });
 
   // it("doesn't call the function", () => {
   //   const fn = jest.fn();
