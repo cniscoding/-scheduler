@@ -24,7 +24,7 @@ export default function useApplicationData() {
     }
       const day = { ...dayObj, spots };
       // console.log('day',day)
-      console.log('state', state.days.map(d => d.name === state.day ? day : d))
+      // console.log('state', state.days.map(d => d.name === state.day ? day : d))
     return state.days.map(d => d.name === state.day ? day : d)
   }
 
