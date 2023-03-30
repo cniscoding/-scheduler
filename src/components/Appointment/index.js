@@ -54,7 +54,7 @@ export default function Appointment(props) {
     transition(SAVING)
     props.bookInterview(props.id, interview)
       .then(() => {
-        return transition(SHOW)
+        transition(SHOW)
       })
       .catch((res) => {
         transition(ERROR_SAVE, true)
@@ -109,7 +109,7 @@ export default function Appointment(props) {
         onClose={back}
       />}
 
-      {mode === ERROR_SAVE && < Error
+      {mode === ERROR_SAVE && <Error
         text='error saving'
         onClose={back}
       />}

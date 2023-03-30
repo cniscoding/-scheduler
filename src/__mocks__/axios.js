@@ -37,8 +37,8 @@ export default {
 
   delete: jest.fn(()=>{
     return Promise.resolve({
-      status: 204,
-      statusText: "No Content"
+      status: 200,
+      statusText: "Delete"
     });
   })
 }

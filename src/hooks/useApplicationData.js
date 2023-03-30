@@ -50,9 +50,9 @@ export default function useApplicationData() {
         days : updateSpots(state, appointments),
       });
     })
-     .catch((res) => {
-      console.log(res)
-      })
+    //  .catch((res) => {
+    //   console.log(res)
+    //   })
   }
 
   // creates new interviews

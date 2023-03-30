@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import {
   render,
@@ -10,7 +11,7 @@ import {
   getByAltText,
   getByPlaceholderText,
   queryByText,
-  queryByAltText
+  queryByAltText,
 
 } from "@testing-library/react";
 
@@ -136,6 +137,40 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+  });
+
+  it("shows the save error when failing to save an appointment", async () => {
+    axios.put.mockRejectedValueOnce();
+    
+  });
+
+  it("shows the delete error when failing to delete an existing appointment", async () => {
+    axios.delete.mockRejectedValueOnce();
+    // 1. Render the Application.
+    const { container, debug } = render(<Application />);
+    // 2. Wait until the text "Archie Cohen" is displayed.
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+    // 3. Click the "Delete" button on the booked appointment.
+    const appointment = getAllByTestId(container, "appointment").find(
+      appointment => queryByText(appointment, "Archie Cohen")
+    );
+
+    fireEvent.click(queryByAltText(appointment, "Delete"));
+    // 4. Check that the confirmation message is shown.
+    expect(getByText(appointment, "Are you sure you would like to delete")).toBeInTheDocument();
+    // 5. Click the "Confirm" button on the confirmation.
+    fireEvent.click(getByText(appointment, "Confirm"));
+    // // 6. Check that the element with the text "Deleting" is displayed.
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
+    // // 7. error deleting should show up here
+    // should be erroring here but it seems like the page is not loading and goes directly to empty
+    await waitForElement(() => getByText(appointment, 'error deleting'));
+    // // 8. Check that there is 1 spot remaining did not change because there was an error deleting.
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+    );
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+    debug()
   });
 
 });
