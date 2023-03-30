@@ -141,7 +141,32 @@ describe("Application", () => {
 
   it("shows the save error when failing to save an appointment", async () => {
     axios.put.mockRejectedValueOnce();
-    
+    const { container, debug } = render(<Application />);
+
+    await waitForElement(() => getByText(container, "Archie Cohen"))
+    const appointments = getAllByTestId(container, "appointment")[0];
+    const appointment = appointments;
+
+    fireEvent.click(getByAltText(appointment, "Add"));
+
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+    fireEvent.click(getByText(appointment, "Save"));
+
+    // checks the "Saving" keyword as we know it goes from CREATE > SAVING (STATUS) > SHOW. mean's it's working correctly after a click
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    // should show the error here
+    await waitForElement(() => getByText(appointment, 'error saving'));
+    // // Check that there is 1 spot remaining did not change because there was an error deleting.
+    const day = getAllByTestId(container, "day").find(day =>
+      queryByText(day, "Monday")
+    );
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
+
   });
 
   it("shows the delete error when failing to delete an existing appointment", async () => {
@@ -170,7 +195,7 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
-    debug()
+
   });
 
 });

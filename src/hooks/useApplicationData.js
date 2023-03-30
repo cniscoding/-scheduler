@@ -81,9 +81,9 @@ export default function useApplicationData() {
       });
     })
   
-    .catch((res) => {
-      console.log(res)
-    })
+    // .catch((res) => {
+    //   console.log(res)
+    // })
   }
 
   // set state
