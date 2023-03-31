@@ -1,13 +1,13 @@
 # Interview Scheduler
 
 Interview Scheduler is single-page app that is used for scheduling interviews.
-The project utilizes HTML, CSS, REACT front-end, AXIOS backend, POSTGRES for the database and schemas and JEST / CYPRESS / STORYBOOK for testing.
+The project utilizes HTML, CSS, REACT front-end, AXIOS backend, PostgreSQL for the database and schemas and JEST / CYPRESS / STORYBOOK for testing.
 
 
 ## ScreenShots
-![file name](URL LOCATION)
-![file name](URL LOCATION)
-![file name](URL LOCATION)
+![Initial Layout]('https://github.com/cniscoding/-scheduler/blob/master/docs/pic1_layout.png')
+![Add New Appointment]('https://github.com/cniscoding/-scheduler/blob/master/docs/pic2_addNewAppt.png')
+![Delete Appointment]('https://github.com/cniscoding/-scheduler/blob/master/docs/pic3_delete.png')
 
 
 ## Setup & Getting Started
@@ -36,7 +36,7 @@ npm test
 npm run storybook
 ```
 
-## Scheduler-api
+## Running PSQL - Scheduler-api
 
 ```sh
 npm start in the scheduler-api directory to start
