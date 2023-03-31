@@ -5,8 +5,13 @@ The project utilizes HTML, CSS, REACT front-end, AXIOS backend, PostgreSQL for t
 
 
 ## ScreenShots
+Initial Layout
 ![Initial Layout](https://github.com/cniscoding/-scheduler/blob/master/docs/pic1_layout.png)
+
+Add New Appointment
 ![Add New Appointment](https://github.com/cniscoding/-scheduler/blob/master/docs/pic2_addNewAppt.png)
+
+Delete Appointment
 ![Delete Appointment](https://github.com/cniscoding/-scheduler/blob/master/docs/pic3_delete.png)
 
 
