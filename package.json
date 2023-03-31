@@ -1,5 +1,7 @@
 {
   "name": "scheduler",
+  "author": "Carson @LHL",
+  "description": "An Interview Scheduler App created at LHL that utilizes react",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:8001",
