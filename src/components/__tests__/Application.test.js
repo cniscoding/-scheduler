@@ -20,7 +20,6 @@ import Application from "components/Application";
 afterEach(cleanup);
 
 describe("Application", () => {
-  // using promises
   it("defaults to Monday and changes the schedule when a new day is selected", () => {
     const { getByText } = render(<Application />);
 
@@ -31,19 +30,8 @@ describe("Application", () => {
       });
   });
 
-  //   // using async await
-  //   it("changes the schedule when a new day is selected", async () => {
-  //     const { getByText } = render(<Application />);
-
-  //     await waitForElement(() => getByText("Monday"));
-
-  //     fireEvent.click(getByText("Tuesday"));
-
-  //     expect(getByText("Leopold Silvers")).toBeInTheDocument();
-  //   });
-
   it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
 
     await waitForElement(() => getByText(container, "Archie Cohen"))
 
@@ -70,12 +58,6 @@ describe("Application", () => {
     );
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
-
-  // Create tests for the following
-  // "loads data, cancels an interview and increases the spots remaining for Monday by 1"
-  // "loads data, edits an interview and keeps the spots remaining for Monday the same"
-  // "shows the save error when failing to save an appointment"
-  // "shows the delete error when failing to delete an existing appointment"
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     // 1. Render the Application.
@@ -122,7 +104,6 @@ describe("Application", () => {
       target: { value: "New Name" }
     });
 
-    // fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
     // 6. Click the "Save" button on the confirmation.
     fireEvent.click(getByText(appointment, "Save"));
 
@@ -185,12 +166,11 @@ describe("Application", () => {
     expect(getByText(appointment, "Are you sure you would like to delete")).toBeInTheDocument();
     // 5. Click the "Confirm" button on the confirmation.
     fireEvent.click(getByText(appointment, "Confirm"));
-    // // 6. Check that the element with the text "Deleting" is displayed.
+    // 6. Check that the element with the text "Deleting" is displayed.
     expect(getByText(appointment, "Deleting")).toBeInTheDocument();
-    // // 7. error deleting should show up here
-    // should be erroring here but it seems like the page is not loading and goes directly to empty
+     // 7. error deleting should show up here
     await waitForElement(() => getByText(appointment, 'error deleting'));
-    // // 8. Check that there is 1 spot remaining did not change because there was an error deleting.
+    // 8. Check that there is 1 spot remaining did not change because there was an error deleting.
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );

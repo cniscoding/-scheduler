@@ -48,8 +48,6 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    // console.log('props', props)
-    // console.log('interview', interview)
 
     transition(SAVING)
     props.bookInterview(props.id, interview)
@@ -69,7 +67,7 @@ export default function Appointment(props) {
     <article className="appointment" data-testid="appointment">
       <Header time={props.time}> </Header>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      
+
       {mode === SHOW && (
         <Show
           student={props.interview.student}
@@ -82,7 +80,6 @@ export default function Appointment(props) {
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
-          // onAdd={}
           onCancel={back}
           onSave={save}
         />)
