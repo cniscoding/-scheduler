@@ -1,30 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-// hook will return an object with four keys
-// The state object will maintain the same structure.
-// The setDay action can be used to set the current day.
-// The bookInterview action makes an HTTP request and updates the local state.
-// The cancelInterview action makes an HTTP request and updates the local state.
-
 export default function useApplicationData() {
   // update # of spots
   function updateSpots(state, appointments) {
-    // console.log('state', state)
     const dayObj = state.days.find(d => d.name === state.day);
-    // console.log('dayObj', dayObj)
     let spots = 0;
     for (const id of dayObj.appointments) {
-      // console.log('id', id)
-      // console.log('spots',spots)
       if (!appointments[id].interview) {
-        // console.log('appointments[id].interview', appointments[id].interview)
         spots++
       }
     }
-      const day = { ...dayObj, spots };
-      // console.log('day',day)
-      // console.log('state', state.days.map(d => d.name === state.day ? day : d))
+    const day = { ...dayObj, spots };
     return state.days.map(d => d.name === state.day ? day : d)
   }
 
@@ -40,26 +27,17 @@ export default function useApplicationData() {
     };
     return axios.delete(`/api/appointments/${id}`, appointment)
 
-    .then(() => {
-      //add updateSpots somewhere?
-      // need code review. is this consider changing state directly?
-      
-      setState({
-        ...state,
-        appointments,
-        days : updateSpots(state, appointments),
-      });
-    })
-    //  .catch((res) => {
-    //   console.log(res)
-    //   })
+      .then(() => {
+        setState({
+          ...state,
+          appointments,
+          days: updateSpots(state, appointments),
+        });
+      })
   }
 
   // creates new interviews
   function bookInterview(id, interview) {
-    // console.log('bookInterview', id, interview);
-    // console.log('state', state)
-    // console.log('..state', state.appointments[id])
 
     const appointment = {
       ...state.appointments[id],
@@ -72,18 +50,13 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, appointment)
 
-    .then(() => {
-      //add updateSpots somewhere?
-      setState({
-        ...state,
-        appointments,
-        days : updateSpots(state, appointments),
-      });
-    })
-  
-    // .catch((res) => {
-    //   console.log(res)
-    // })
+      .then(() => {
+        setState({
+          ...state,
+          appointments,
+          days: updateSpots(state, appointments),
+        });
+      })
   }
 
   // set state

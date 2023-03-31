@@ -1,10 +1,10 @@
 import { useState } from 'react'
-
 // create function that takes in an initial mode
 export function useVisualMode(initial) {
 
-  //set the mode state to initial
+  // set the mode state to initial
   const [mode, setMode] = useState(initial);
+  // useState to keep track of history
   const [history, setHistory] = useState([initial]);
 
   // movement within history
